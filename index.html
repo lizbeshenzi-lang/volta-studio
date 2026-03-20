@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volta Studio — London</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--void:#08070a;--near:#0f0e12;--lift:#18171c;--border:rgba(255,255,255,.07);--b2:rgba(255,255,255,.11);--dim:rgba(245,244,250,.25);--mid:rgba(245,244,250,.52);--white:rgba(245,244,250,.92);--violet:#7c5cbf;--violet2:#9b78e0;--lavender:#c4b5f4;--serif:'Syne',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--void);color:var(--white);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:rgba(8,7,10,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-size:.95rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+.nav-logo span{color:var(--violet2)}
+.nav-d,.nav-cta-d{display:none}
+.hbg{background:none;border:none;cursor:pointer;padding:.35rem;display:flex;flex-direction:column;gap:5px}
+.hbg span{display:block;width:22px;height:1.5px;background:var(--white);transition:all .3s}
+.hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mmenu{position:fixed;inset:0;background:var(--void);z-index:190;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2.5rem;transform:translateX(100%);transition:transform .35s ease}
+.mmenu.open{transform:translateX(0)}
+.mmenu a{font-family:var(--serif);font-size:2rem;font-weight:800;text-transform:uppercase;color:var(--white);transition:color .2s}
+.mmenu a:hover{color:var(--violet2)}
+.mmenu .m-cta{color:var(--lavender)!important;font-size:1.2rem}
+@media(min-width:768px){.hbg,.mmenu{display:none!important}.nav-d{display:flex;align-items:center;gap:3rem}.nav-d a{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);transition:color .2s}.nav-d a:hover{color:var(--white)}.nav-cta-d{display:flex;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lavender);border-bottom:1px solid rgba(196,181,244,.25);padding-bottom:.1rem}nav{padding:1.5rem 4rem}}
+.hero{min-height:100svh;background:var(--void);display:flex;flex-direction:column;justify-content:flex-end;padding:5rem 1.25rem 2.5rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,191,.12) 0%,transparent 70%);pointer-events:none}
+.hero-inner{position:relative;z-index:1}
+.hero-meta{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-bottom:3rem;display:flex;gap:2rem;flex-wrap:wrap}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.8rem,12vw,7rem);font-weight:800;line-height:.9;text-transform:uppercase;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero-h1 .accent{color:var(--violet2);display:block}
+.hero-desc{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);max-width:24rem;line-height:2.2;margin-bottom:3rem}
+.hero-link{display:inline-flex;align-items:center;gap:2rem;font-family:var(--serif);font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--lavender);border-bottom:1px solid rgba(196,181,244,.2);padding-bottom:.4rem;transition:all .2s}
+.hero-link:hover{gap:3rem}
+.hero-link::after{content:'';width:2.5rem;height:1px;background:currentColor;flex-shrink:0}
+@media(min-width:768px){.hero{padding:6rem 4rem 4rem}}
+.ticker{background:var(--violet);padding:.75rem 0;overflow:hidden;display:flex;white-space:nowrap}
+.ticker-track{display:flex;gap:3rem;animation:tk 22s linear infinite;padding-right:3rem}
+.ticker-track span{font-family:var(--serif);font-size:.78rem;font-weight:700;text-transform:uppercase;color:white;letter-spacing:.06em}
+.ticker-track .dot{opacity:.4;font-size:.4rem;display:flex;align-items:center}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.work{padding:4rem 1.25rem;background:var(--void)}
+.sec-label{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--violet2);margin-bottom:.5rem}
+.sec-h2{font-family:var(--serif);font-size:clamp(2rem,8vw,3.5rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:2rem}
+.work-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border)}
+.work-item{background:var(--void);padding:1.75rem;transition:background .2s;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start}
+.work-item:hover{background:var(--near)}
+.work-item h3{font-family:var(--serif);font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin-bottom:.3rem;color:var(--white)}
+.work-item p{font-size:.72rem;color:var(--dim);line-height:1.85;letter-spacing:.04em}
+.work-tag{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--violet2);text-align:right;white-space:nowrap;padding-top:.3rem}
+@media(min-width:600px){.work-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:768px){.work{padding:6rem 4rem}}
+.about{padding:4rem 1.25rem;background:var(--near);border-top:1px solid var(--border);display:grid;grid-template-columns:1fr;gap:3rem}
+.about-idx{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-bottom:1.25rem}
+.about h2{font-family:var(--serif);font-size:clamp(2rem,8vw,3.5rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1;color:var(--white)}
+.about-r{padding-top:1rem}
+.about p{font-size:.75rem;color:var(--mid);line-height:2.3;margin-bottom:1.25rem;letter-spacing:.04em}
+.about-rule{height:1px;background:var(--border);margin:2rem 0}
+.svcs{display:flex;flex-direction:column}
+.svc-row{padding:1.25rem 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.svc-row:last-child{border-bottom:1px solid var(--border)}
+.svc-row h4{font-family:var(--serif);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--white)}
+.svc-row span{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--violet2);white-space:nowrap}
+@media(min-width:768px){.about{padding:6rem 4rem;grid-template-columns:1fr 1fr;align-items:start;gap:8rem}}
+.contact-sec{padding:4rem 1.25rem;background:var(--void);border-top:1px solid var(--border);display:grid;grid-template-columns:1fr;gap:3rem}
+.contact-sec h2{font-family:var(--serif);font-size:clamp(2rem,8vw,3.5rem);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:1.5rem;color:var(--white)}
+.contact-copy p{font-size:.72rem;color:var(--mid);line-height:2.2;margin-bottom:1.25rem;letter-spacing:.04em}
+.contact-note{padding:1.5rem;border:1px solid var(--border);font-size:.65rem;color:var(--dim);line-height:2.1;margin-top:1.5rem;letter-spacing:.05em}
+.contact-note strong{color:var(--lavender);font-weight:400}
+.cform{display:flex;flex-direction:column}
+.cf{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.5rem}
+.cf label{font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.cf input,.cf select,.cf textarea{background:transparent;border:none;border-bottom:1px solid var(--border);padding:.8rem 0;font-size:.8rem;font-family:var(--sans);color:var(--white);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none;border-radius:0;letter-spacing:.04em}
+.cf input:focus,.cf select:focus,.cf textarea:focus{border-color:var(--violet2)}
+.cf input::placeholder,.cf textarea::placeholder{color:var(--dim)}
+.cf select option{background:var(--near)}
+.cf textarea{resize:none;min-height:55px;line-height:1.7}
+.cf-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.c-submit{background:var(--violet);color:white;border:none;padding:1rem 1.5rem;font-family:var(--serif);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .25s;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent;border-radius:0;margin-top:.5rem}
+.c-submit:hover{background:var(--violet2)}
+.c-submit:disabled{opacity:.5;cursor:not-allowed}
+.c-submit span{opacity:.35;font-size:1.1rem}
+.cfs{margin-top:.75rem;padding:.8rem 1rem;font-size:.78rem;display:none;letter-spacing:.04em;border-radius:0}
+.cfs.ok{background:rgba(124,92,191,.12);color:var(--lavender);border:1px solid rgba(124,92,191,.3);display:block}
+.cfs.err{background:rgba(220,38,38,.1);color:#f87171;border:1px solid rgba(220,38,38,.3);display:block}
+@media(min-width:768px){.contact-sec{padding:6rem 4rem;grid-template-columns:1fr 1fr;align-items:start}}
+footer{background:var(--void);border-top:1px solid var(--border);padding:3rem 1.25rem 2rem}
+.ft-logo{font-family:var(--serif);font-size:.9rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--white);margin-bottom:.4rem}
+.ft-logo span{color:var(--violet2)}
+.ft-tag{font-size:.65rem;color:var(--dim);line-height:1.8;margin-bottom:1.5rem;letter-spacing:.04em}
+.ft-bot{font-size:.56rem;letter-spacing:.12em;color:rgba(245,244,250,.14);border-top:1px solid var(--border);padding-top:1.25rem;text-transform:uppercase}
+@media(min-width:768px){footer{padding:3.5rem 4rem 2rem}}
+</style>
+</head>
+<body>
+<nav><a href="#" class="nav-logo">Volta<span>.</span></a><div class="nav-d"><a href="#work">Work</a><a href="#about">About</a><a href="#contact-sec">Contact</a></div><a href="#contact-sec" class="nav-cta-d">Start a project</a><button class="hbg" id="hbg" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button></nav>
+<div class="mmenu" id="mmenu"><a href="#work" onclick="toggleMenu()">Work</a><a href="#about" onclick="toggleMenu()">About</a><a href="#contact-sec" onclick="toggleMenu()">Contact</a><a href="#contact-sec" class="m-cta" onclick="toggleMenu()">Start a project</a></div>
+<section class="hero"><div class="hero-glow"></div><div class="hero-inner"><div class="hero-meta"><span>London · EC1</span><span>Est. 2021</span><span>Digital Studio</span></div><h1 class="hero-h1">We Build<br>What<br><span class="accent">Works.</span></h1><p class="hero-desc">A London digital studio. Websites, brand systems, and digital products — built to perform, not just to look good.</p><a href="#contact-sec" class="hero-link">Start a project</a></div></section>
+<div class="ticker"><div class="ticker-track"><span>Web Design</span><span class="dot">●</span><span>Brand Systems</span><span class="dot">●</span><span>Digital Products</span><span class="dot">●</span><span>Motion Design</span><span class="dot">●</span><span>London · EC1</span><span class="dot">●</span><span>Web Design</span><span class="dot">●</span><span>Brand Systems</span><span class="dot">●</span><span>Digital Products</span><span class="dot">●</span><span>Motion Design</span><span class="dot">●</span><span>London · EC1</span><span class="dot">●</span></div></div>
+<section class="work" id="work"><div class="sec-label">Selected Work</div><h2 class="sec-h2">Recent Projects</h2><div class="work-grid"><div class="work-item"><div><h3>Harley Private</h3><p>Private medical clinic with live appointment booking and patient management</p></div><div class="work-tag">Healthcare</div></div><div class="work-item"><div><h3>Meridian School</h3><p>Prestige school website with editorial design and admissions flow</p></div><div class="work-tag">Education</div></div><div class="work-item"><div><h3>Aspect Properties</h3><p>Boutique estate agency with property listings and valuation requests</p></div><div class="work-tag">Real Estate</div></div><div class="work-item"><div><h3>Nocturne Bar</h3><p>Cocktail bar website with table booking and seasonal menu system</p></div><div class="work-tag">Hospitality</div></div><div class="work-item"><div><h3>Venn Capital</h3><p>Investment firm with FCA-compliant investor relations platform</p></div><div class="work-tag">Finance</div></div><div class="work-item"><div><h3>Ledge Restaurant</h3><p>Tasting menu restaurant with timed reservations and deposit system</p></div><div class="work-tag">Restaurant</div></div></div></section>
+<section class="about" id="about"><div><div class="about-idx">/ About Volta</div><h2>Craft at every level</h2></div><div class="about-r"><p>Volta is a small digital studio based in EC1. We work with ambitious companies — startups, boutique operators, and established businesses — who want a website that genuinely performs, not one that just checks a box.</p><p>We don't do volume. We take a limited number of projects each quarter and give each one the time it deserves. If we can't do it properly, we say so.</p><div class="about-rule"></div><div class="svcs"><div class="svc-row"><h4>Web Design & Dev</h4><span>From £3,500</span></div><div class="svc-row"><h4>Brand Systems</h4><span>From £5,000</span></div><div class="svc-row"><h4>Digital Products</h4><span>From £8,000</span></div><div class="svc-row"><h4>Ongoing Retainer</h4><span>From £900 / mo</span></div></div></div></section>
+<section class="contact-sec" id="contact-sec"><div class="contact-copy"><h2>Start a project</h2><p>Tell us what you're building. We'll come back to you within one working day with a clear view of whether we're the right fit and what it would cost.</p><div class="contact-note"><strong>Availability</strong><br>We are currently taking new projects for Q2 2026 onwards. Enquiries welcome now — we'll hold your place in the queue.</div></div><div class="cform"><div class="cf"><label>Your name</label><input type="text" id="cName" placeholder="—" autocomplete="name"></div><div class="cf-2"><div class="cf"><label>Email</label><input type="email" id="cEmail" placeholder="—" autocomplete="email"></div><div class="cf"><label>Company</label><input type="text" id="cCo" placeholder="—"></div></div><div class="cf"><label>What do you need?</label><select id="cSvc"><option>—</option><option>New website (from £3,500)</option><option>Brand system (from £5,000)</option><option>Digital product (from £8,000)</option><option>Ongoing retainer</option><option>Not sure yet</option></select></div><div class="cf"><label>Budget range</label><select id="cBudget"><option>—</option><option>£3,500 – £8,000</option><option>£8,000 – £20,000</option><option>£20,000 – £50,000</option><option>£50,000+</option></select></div><div class="cf"><label>Brief overview of the project</label><textarea id="cMsg" placeholder="—" rows="3"></textarea></div><button class="c-submit" id="cBtn" onclick="submitContact()">Send enquiry <span>→</span></button><div class="cfs" id="cfs"></div></div></section>
+<footer><div class="ft-logo">Volta<span>.</span></div><div class="ft-tag">A London digital studio. Websites, brand systems, digital products. EC1 · Est. 2021.</div><div class="ft-bot">© 2025 Volta Studio Ltd · London EC1 · hello@volta.studio</div></footer>
+<script>
+function toggleMenu(){const h=document.getElementById('hbg'),m=document.getElementById('mmenu');h.classList.toggle('open');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+async function submitContact(){const n=document.getElementById('cName').value.trim(),e=document.getElementById('cEmail').value.trim();if(!n||!e){showCFS('Please enter your name and email.','err');return;}const btn=document.getElementById('cBtn');btn.disabled=true;btn.childNodes[0].textContent='Sending... ';try{await fetch('/api/enquire',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,service:document.getElementById('cSvc').value,message:`Co: ${document.getElementById('cCo').value} | Budget: ${document.getElementById('cBudget').value} | ${document.getElementById('cMsg').value}`,siteName:'Volta Studio'})}).catch(()=>{});showCFS('Thank you. We\'ll come back to you within one working day.','ok');btn.childNodes[0].textContent='Sent ✓ ';}catch{btn.disabled=false;btn.childNodes[0].textContent='Send enquiry ';showCFS('Something went wrong. Email hello@volta.studio','err');}}
+function showCFS(m,t){const e=document.getElementById('cfs');e.textContent=m;e.className='cfs '+t;}
+</script>
+</body>
+</html>
