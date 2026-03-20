@@ -99,6 +99,26 @@ footer{background:var(--void);border-top:1px solid var(--border);padding:3rem 1.
 .ft-tag{font-size:.65rem;color:var(--dim);line-height:1.8;margin-bottom:1.5rem;letter-spacing:.04em}
 .ft-bot{font-size:.56rem;letter-spacing:.12em;color:rgba(245,244,250,.14);border-top:1px solid var(--border);padding-top:1.25rem;text-transform:uppercase}
 @media(min-width:768px){footer{padding:3.5rem 4rem 2rem}}
+
+/* MOBILE OPTIMIZATIONS */
+@media(max-width: 640px) {
+  html { font-size: 15px; }
+  h1, .hero-h1, .sec-h2 { line-height: 1.2; word-break: break-word; }
+  p { line-height: 1.6; }
+  section { padding: 2rem 1rem !important; }
+  .work-grid, .doctors-grid, .services-list, .about-facts, .cform, .bf-group, .cf { grid-template-columns: 1fr !important; }
+  .cf-2, .bf-2col { grid-template-columns: 1fr !important; gap: 1rem; }
+  button, .btn-gold, .btn-outline-teal, .btn-ghost, .c-submit, .book-btn { width: 100%; padding: 1rem !important; font-size: 1rem; }
+  .hero, .hero-l, .hero-r { grid-template-columns: 1fr !important; padding: 2rem 1rem !important; }
+  nav { padding: 1rem !important; }
+  footer { padding: 2rem 1rem !important; }
+  .fi, .ft, .fbot { grid-template-columns: 1fr !important; gap: 2rem; }
+}
+@media(max-width: 360px) {
+  html { font-size: 14px; }
+  section { padding: 1.5rem 0.75rem !important; }
+  button { font-size: 0.875rem; padding: 0.75rem !important; }
+}
 </style>
 </head>
 <body>
@@ -117,4 +137,5 @@ function showCFS(m,t){const e=document.getElementById('cfs');e.textContent=m;e.c
 </script>
 </body>
 </html>
+
 
